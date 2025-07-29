@@ -1,20 +1,18 @@
-from unittest.mock import patch, mock_open
+from typing import Any, Dict, List
+from unittest.mock import mock_open, patch
 
-from src.utils import read_json, get_products
-from src.product import Product
 from src.categories import Category
-
-
-
+from src.product import Product
+from src.utils import get_products, read_json
 
 
 @patch("builtins.open", new_callable=mock_open, read_data='{"key": "value"}')
-def test_read_json_success(mock_file):
+def test_read_json_success(mock_file: Any) -> None:
     result = read_json("dummy.json")
-    assert result["key"] == "value"
+    assert result[0]["key"] == "value"
 
 
-def test_get_products(sample_data):
+def test_get_products(sample_data: List[Dict[str, Any]]) -> None:
     categories = get_products(sample_data.copy())
     assert len(categories) == 2
     assert isinstance(categories[0], Category)
