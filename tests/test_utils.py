@@ -9,7 +9,7 @@ from src.utils import get_products, read_json
 @patch("builtins.open", new_callable=mock_open, read_data='{"key": "value"}')
 def test_read_json_success(mock_file: Any) -> None:
     result = read_json("dummy.json")
-    assert result[0]["key"] == "value"
+    assert result["key"] == "value"
 
 
 def test_get_products(sample_data: List[Dict[str, Any]]) -> None:

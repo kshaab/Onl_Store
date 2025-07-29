@@ -1,15 +1,15 @@
 import json
 import os
-from typing import Any, Dict, List, cast
+from typing import Any, Dict, List
 
 from src.categories import Category
 from src.product import Product
 
 
-def read_json(path: str) -> List[Dict[str, Any]]:
+def read_json(path: str) -> Any:
     full_path = os.path.abspath(path)
     with open(full_path, "r", encoding="UTF-8") as file:
-        file_data = file_data = cast(List[Dict[str, Any]], json.load(file))
+        file_data = json.load(file)
     return file_data
 
 
@@ -33,7 +33,8 @@ def get_products(file_data: List[Dict[str, Any]]) -> List[Category]:
 
 
 if __name__ == "__main__":
-    data = read_json("../data/products.json")
+    file = "../data/products.json"
+    data = read_json(file)
     categories_data = get_products(data)
 
     for category in categories_data:
