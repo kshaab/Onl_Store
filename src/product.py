@@ -35,7 +35,7 @@ class Product:
         for pr in all_products:
             if pr.name.lower() == data["name"].lower():
                 pr.quantity += data["quantity"]
-                pr.price = data["price"]  # Использует сеттер
+                pr.price = data["price"]
                 return pr
         new_product = cls(
             data["name"],

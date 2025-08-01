@@ -15,7 +15,7 @@ class Category:
         self.description = description
         self.__products_list = products if products else []
         Category.category_count += 1
-        Category.product_count += len(self.products)
+        Category.product_count += len(self.__products_list)
 
     def add_product(self, product_name: Product) -> None:
         self.__products_list.append(product_name)
@@ -23,10 +23,6 @@ class Category:
 
     @property
     def get_products(self) -> List[Product]:
-        return self.__products_list
-
-    @property
-    def product_list(self) -> List[Product]:
         return self.__products_list
 
     @property
@@ -48,7 +44,7 @@ if __name__ == "__main__":
         products=[product_1, product_2, product_3],
     )
     print(f"{category.name}. {category.description}")
-    for product in category.product_list:
+    for product in category.get_products:
         print(f" {product.name}: {product.price} руб.")
     print(f"Количество категорий: {category.category_count}")
     print(f"Количество продуктов в категории: {category.product_count}")

@@ -16,6 +16,6 @@ def test_get_products(sample_data: List[Dict[str, Any]]) -> None:
     categories = get_products(sample_data.copy())
     assert len(categories) == 2
     assert isinstance(categories[0], Category)
-    assert len(categories[0].products) == 2
-    assert isinstance(categories[0].products[0], Product)
+    assert len(categories[0].get_products) == 2
+    assert isinstance(categories[0].get_products[0], Product)
     assert categories[1].name == "Телевизоры"
