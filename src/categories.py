@@ -6,16 +6,31 @@ from src.product import Product
 class Category:
     name: str
     description: str
-    products: list
+    __products: list
     category_count = 0
     product_count = 0
 
     def __init__(self, name: str, description: str, products: Optional[List[Product]] = None) -> None:
         self.name = name
         self.description = description
-        self.products = products if products else []
+        self.__products_list = products if products else []
         Category.category_count += 1
         Category.product_count += len(self.products)
+
+    def add_product(self, product_name: Product) -> None:
+        self.__products_list.append(product_name)
+        Category.product_count += 1
+
+    @property
+    def product_list(self) -> List[Product]:
+        return self.__products_list
+
+    @property
+    def products(self) -> str:
+        products_str = ""
+        for item in self.__products_list:
+            products_str += f"{item.name}, {item.price} руб. Остаток: {item.quantity} шт.\n"
+        return products_str
 
 
 if __name__ == "__main__":
@@ -28,9 +43,9 @@ if __name__ == "__main__":
         "Смартфоны, как средство не только коммуникации, но и получение дополнительных функций для удобства жизни.",
         products=[product_1, product_2, product_3],
     )
-    print(category.name)
-    print(category.description)
-    for product in category.products:
+    print(f"{category.name}. {category.description}")
+    for product in category.product_list:
         print(f" {product.name}: {product.price} руб.")
     print(f"Количество категорий: {category.category_count}")
     print(f"Количество продуктов в категории: {category.product_count}")
+    print(category.products)
