@@ -22,6 +22,10 @@ class Category:
         Category.product_count += 1
 
     @property
+    def get_products(self) -> List[Product]:
+        return self.__products_list
+
+    @property
     def product_list(self) -> List[Product]:
         return self.__products_list
 
