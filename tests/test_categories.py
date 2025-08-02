@@ -1,5 +1,7 @@
 from typing import List
 
+from _pytest.capture import CaptureFixture
+
 from src.categories import Category
 from src.product import Product
 
@@ -42,3 +44,11 @@ def test_add_product(category: Category) -> None:
     category.add_product(new_product)
     assert len(category.get_products) == count + 1
     assert category.get_products[-1] == new_product
+
+
+def test_add_product_type(capfd: CaptureFixture) -> None:
+    category = Category("Смартфоны", "test")
+    category.add_product("not available")
+    out, _ = capfd.readouterr()
+    assert "Объект не принадлежит классу Product" in out
+    assert len(category.get_products) == 0

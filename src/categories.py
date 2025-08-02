@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import Any, List, Optional
 
 from src.product import Product
 
@@ -17,7 +17,10 @@ class Category:
         Category.category_count += 1
         Category.product_count += len(self.__products_list)
 
-    def add_product(self, product_name: Product) -> None:
+    def add_product(self, product_name: Any) -> None:
+        if not isinstance(product_name, Product):
+            print("Объект не принадлежит классу Product")
+            return
         self.__products_list.append(product_name)
         Category.product_count += 1
 
