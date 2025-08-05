@@ -17,6 +17,11 @@ class Category:
         Category.category_count += 1
         Category.product_count += len(self.__products_list)
 
+
+    def __str__(self):
+        total_quantity = sum(product.quantity for product in self.__products_list)
+        return f"{self.name}, количество продуктов: {total_quantity} шт."
+
     def add_product(self, product_name: Any) -> None:
         if not isinstance(product_name, Product):
             print("Объект не принадлежит классу Product")
@@ -34,10 +39,6 @@ class Category:
         for item in self.__products_list:
             products_str += str(item)
         return products_str
-
-    def __str__(self):
-        total_quantity = sum(product.quantity for product in self.__products_list)
-        return f"{self.name}, количество продуктов: {total_quantity} шт."
 
 
 if __name__ == "__main__":

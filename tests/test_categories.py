@@ -52,3 +52,8 @@ def test_add_product_type(capfd: CaptureFixture) -> None:
     out, _ = capfd.readouterr()
     assert "Объект не принадлежит классу Product" in out
     assert len(category.get_products) == 0
+
+
+def test_category_str(sample_category: Category) -> None:
+    assert f"Смартфоны, количество продуктов: 27 шт."
+

@@ -18,6 +18,9 @@ class Product:
     def __str__(self) -> str:
         return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
 
+    def __add__(self, other):
+        return (self.__price * self.quantity) + (other.__price * other.quantity)
+
     @property
     def price(self) -> float:
         return self.__price
@@ -78,3 +81,4 @@ if __name__ == "__main__":
     product.price = 200000.0
     print(product.price)
     print(product)
+    print(product + another_product)
