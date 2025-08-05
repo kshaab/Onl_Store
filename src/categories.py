@@ -1,7 +1,7 @@
 from typing import Any, List, Optional
 
 from src.product import Product
-
+from src.category_iter import CategoryIterator
 
 class Category:
     name: str
@@ -21,6 +21,9 @@ class Category:
     def __str__(self):
         total_quantity = sum(product.quantity for product in self.__products_list)
         return f"{self.name}, количество продуктов: {total_quantity} шт."
+
+    def __iter__(self):
+        return CategoryIterator(self)
 
     def add_product(self, product_name: Any) -> None:
         if not isinstance(product_name, Product):
@@ -58,4 +61,6 @@ if __name__ == "__main__":
     print(f"Количество продуктов в категории: {category.product_count}")
     print(category.products)
     print(category)
+    for product in category:
+        print(product)
 
