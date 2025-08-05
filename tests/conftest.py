@@ -1,10 +1,10 @@
-from typing import Any, Dict, List, Iterator
+from typing import Any, Dict, Iterator, List
 
 import pytest
 
-from src.categories import Category
+from src.categories import Category, CategoryIterator
 from src.product import Product
-from src.category_iter import CategoryIterator
+
 
 @pytest.fixture
 def product() -> Product:
@@ -14,6 +14,7 @@ def product() -> Product:
 @pytest.fixture
 def other_product() -> Product:
     return Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14)
+
 
 @pytest.fixture
 def category() -> Category:
@@ -79,5 +80,5 @@ def sample_category() -> Category:
 
 
 @pytest.fixture
-def cat_iterator(sample_category: Category) -> Iterator[Category]:
+def cat_iterator(sample_category: Category) -> Iterator[Product]:
     return CategoryIterator(sample_category)

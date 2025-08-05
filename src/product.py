@@ -1,4 +1,4 @@
-from typing import List
+from typing import Any, List
 
 all_products: List["Product"] = []
 
@@ -18,7 +18,7 @@ class Product:
     def __str__(self) -> str:
         return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
 
-    def __add__(self, other):
+    def __add__(self, other: Any) -> Any:
         return (self.__price * self.quantity) + (other.__price * other.quantity)
 
     @property
