@@ -1,10 +1,10 @@
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Iterator
 
 import pytest
 
 from src.categories import Category
 from src.product import Product
-
+from src.category_iter import CategoryIterator
 
 @pytest.fixture
 def product() -> Product:
@@ -76,3 +76,8 @@ def sample_category() -> Category:
         products=[product_1, product_2, product_3],
     )
     return category
+
+
+@pytest.fixture
+def cat_iterator(sample_category: Category) -> Iterator[Category]:
+    return CategoryIterator(sample_category)

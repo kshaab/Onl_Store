@@ -1,4 +1,4 @@
-class CategoryIterator():
+class CategoryIterator:
     def __init__(self, category) -> None:
         self.product = category.get_products
         self.index = 0
