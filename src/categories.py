@@ -32,8 +32,12 @@ class Category:
     def products(self) -> str:
         products_str = ""
         for item in self.__products_list:
-            products_str += f"{item.name}, {item.price} руб. Остаток: {item.quantity} шт.\n"
+            products_str += str(item)
         return products_str
+
+    def __str__(self):
+        total_quantity = sum(product.quantity for product in self.__products_list)
+        return f"{self.name}, количество продуктов: {total_quantity} шт."
 
 
 if __name__ == "__main__":
@@ -52,3 +56,5 @@ if __name__ == "__main__":
     print(f"Количество категорий: {category.category_count}")
     print(f"Количество продуктов в категории: {category.product_count}")
     print(category.products)
+    print(category)
+
