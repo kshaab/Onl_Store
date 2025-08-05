@@ -39,7 +39,7 @@ if __name__ == "__main__":
 
     for category in categories_data:
         print(f"Категория: {category.name}")
-        for product in category.products:
+        for product in category.get_products:
             print(f" {product.name}: {product.price} руб., {product.quantity} шт.")
 
     print(f"\nВсего категорий: {Category.category_count}")
