@@ -1,14 +1,19 @@
-from typing import Any, Dict, List
+from typing import Any, Dict, Iterator, List
 
 import pytest
 
-from src.categories import Category
+from src.categories import Category, CategoryIterator
 from src.product import Product
 
 
 @pytest.fixture
 def product() -> Product:
     return Product("Samsung Galaxy C23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
+
+
+@pytest.fixture
+def other_product() -> Product:
+    return Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14)
 
 
 @pytest.fixture
@@ -59,3 +64,21 @@ def sample_data() -> List[Dict[str, Any]]:
             ],
         },
     ]
+
+
+@pytest.fixture
+def sample_category() -> Category:
+    product_1 = Product("Samsung Galaxy C23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
+    product_2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
+    product_3 = Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14)
+    category = Category(
+        "Смартфоны",
+        "Смартфоны, как средство не только коммуникации, но и получение дополнительных функций для удобства жизни.",
+        products=[product_1, product_2, product_3],
+    )
+    return category
+
+
+@pytest.fixture
+def cat_iterator(sample_category: Category) -> Iterator[Product]:
+    return CategoryIterator(sample_category)

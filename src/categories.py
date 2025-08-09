@@ -1,6 +1,23 @@
-from typing import Any, List, Optional
+from typing import Any, Iterator, List, Optional
 
 from src.product import Product
+
+
+class CategoryIterator:
+    def __init__(self, category_obj: "Category") -> None:
+        self.product = category_obj.get_products
+        self.index = 0
+
+    def __iter__(self) -> Any:
+        return self
+
+    def __next__(self) -> "Product":
+        if self.index < len(self.product):
+            pr = self.product[self.index]
+            self.index += 1
+            return pr
+        else:
+            raise StopIteration
 
 
 class Category:
@@ -17,6 +34,13 @@ class Category:
         Category.category_count += 1
         Category.product_count += len(self.__products_list)
 
+    def __str__(self) -> str:
+        total_quantity = sum(product.quantity for product in self.__products_list)
+        return f"{self.name}, количество продуктов: {total_quantity} шт."
+
+    def __iter__(self) -> Iterator[Product]:
+        return CategoryIterator(self)
+
     def add_product(self, product_name: Any) -> None:
         if not isinstance(product_name, Product):
             print("Объект не принадлежит классу Product")
@@ -32,7 +56,7 @@ class Category:
     def products(self) -> str:
         products_str = ""
         for item in self.__products_list:
-            products_str += f"{item.name}, {item.price} руб. Остаток: {item.quantity} шт.\n"
+            products_str += str(item)
         return products_str
 
 
@@ -52,3 +76,6 @@ if __name__ == "__main__":
     print(f"Количество категорий: {category.category_count}")
     print(f"Количество продуктов в категории: {category.product_count}")
     print(category.products)
+    print(category)
+    for product in category:
+        print(product)

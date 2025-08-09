@@ -1,4 +1,4 @@
-from typing import List
+from typing import Any, List
 
 all_products: List["Product"] = []
 
@@ -14,6 +14,12 @@ class Product:
         self.description = description
         self.__price = price
         self.quantity = quantity
+
+    def __str__(self) -> str:
+        return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
+
+    def __add__(self, other: Any) -> Any:
+        return (self.__price * self.quantity) + (other.__price * other.quantity)
 
     @property
     def price(self) -> float:
@@ -74,3 +80,5 @@ if __name__ == "__main__":
     product.price = -100
     product.price = 200000.0
     print(product.price)
+    print(product)
+    print(product + another_product)

@@ -1,8 +1,9 @@
 from typing import List
 
+import pytest
 from _pytest.capture import CaptureFixture
 
-from src.categories import Category
+from src.categories import Category, CategoryIterator
 from src.product import Product
 
 
@@ -52,3 +53,18 @@ def test_add_product_type(capfd: CaptureFixture) -> None:
     out, _ = capfd.readouterr()
     assert "Объект не принадлежит классу Product" in out
     assert len(category.get_products) == 0
+
+
+def test_category_str(sample_category: Category) -> None:
+    assert "Смартфоны, количество продуктов: 27 шт."
+
+
+def test_category_iterator(cat_iterator: CategoryIterator) -> None:
+    iter(cat_iterator)
+    assert cat_iterator.index == 0
+    assert next(cat_iterator).name == "Samsung Galaxy C23 Ultra"
+    assert next(cat_iterator).name == "Iphone 15"
+    assert next(cat_iterator).name == "Xiaomi Redmi Note 11"
+
+    with pytest.raises(StopIteration):
+        next(cat_iterator)

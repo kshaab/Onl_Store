@@ -29,7 +29,7 @@ def test_price_fail(capsys: Any) -> None:
 
 
 @patch("builtins.input", return_value="y")
-def test_price_yas(mock_input: Any) -> None:
+def test_price_yes(mock_input: Any) -> None:
     product = Product("Test", "test", 1000, 1)
     product.price = 900
     assert product.price == 900
@@ -51,3 +51,12 @@ def test_new_product() -> None:
     assert len(all_products) == 1
     assert new_product.quantity == 8
     assert new_product.price == 210000.0
+
+
+def test_product_str(product: Product) -> None:
+    assert str(product) == "Samsung Galaxy C23 Ultra, 180000.0 руб. Остаток: 5 шт."
+
+
+def test_product_add(product: Product, other_product: Product) -> None:
+    assert product.price + other_product.price == 211000.0
+    assert (product.price * product.quantity) + (other_product.price * other_product.quantity) == 1334000.0
