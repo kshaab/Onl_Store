@@ -20,7 +20,7 @@ class Product:
 
     def __add__(self, other: Any) -> Any:
         if type(self) is type(other):
-         return (self.__price * self.quantity) + (other.__price * other.quantity)
+            return (self.__price * self.quantity) + (other.__price * other.quantity)
         raise TypeError
 
     @property

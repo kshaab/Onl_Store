@@ -1,6 +1,8 @@
 from typing import Any
 from unittest.mock import patch
 
+import pytest
+
 from src.product import Product, all_products
 
 
@@ -60,3 +62,8 @@ def test_product_str(product: Product) -> None:
 def test_product_add(product: Product, other_product: Product) -> None:
     assert product.price + other_product.price == 211000.0
     assert (product.price * product.quantity) + (other_product.price * other_product.quantity) == 1334000.0
+
+
+def test_product_add_fail(product: Product) -> None:
+    with pytest.raises(TypeError):
+        product + 1
