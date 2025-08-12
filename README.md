@@ -40,6 +40,12 @@ python src/<имя файла>.py
 - ### `class CategoryIterator`
 Перебирает товары одной категории. 
 
+### Product_heirs
+- ### `class Smartphone(Product)`
+Дочерний класс класса Product с добавленными свойствами efficiency, model, memory, color. 
+- ### `class LawnGrass(Product)`
+Дочерний класс класса Product с добавленными свойствами country, germination_period, color. 
+
 ### Utils 
 - ### `read_json(path: str)` 
 Считывает данные из json-файла.

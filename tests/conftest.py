@@ -4,6 +4,7 @@ import pytest
 
 from src.categories import Category, CategoryIterator
 from src.product import Product
+from src.product_heirs import LawnGrass, Smartphone
 
 
 @pytest.fixture
@@ -82,3 +83,13 @@ def sample_category() -> Category:
 @pytest.fixture
 def cat_iterator(sample_category: Category) -> Iterator[Product]:
     return CategoryIterator(sample_category)
+
+
+@pytest.fixture
+def smartphone() -> Smartphone:
+    return Smartphone("IPhone16e", "256GB, Белый", 90000.0, 14, 5410, "A3212", 256, "White")
+
+
+@pytest.fixture
+def grass() -> LawnGrass:
+    return LawnGrass("Газонная трава", "Элитная трава для газона", 500.0, 20, "Россия", "7 дней", "Зеленый")
