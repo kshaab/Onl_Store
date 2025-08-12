@@ -1,9 +1,10 @@
 from typing import Any, List
+from src.base_product import BaseProduct
 
 all_products: List["Product"] = []
 
 
-class Product:
+class Product(BaseProduct):
     name: str
     description: str
     __price: float
