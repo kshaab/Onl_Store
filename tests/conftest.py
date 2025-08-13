@@ -3,7 +3,6 @@ from typing import Any, Dict, Iterator, List
 import pytest
 
 from src.categories import Category, CategoryIterator
-from src.order import Order
 from src.product import Product
 from src.product_heirs import LawnGrass, Smartphone
 
@@ -94,4 +93,3 @@ def smartphone() -> Smartphone:
 @pytest.fixture
 def grass() -> LawnGrass:
     return LawnGrass("Газонная трава", "Элитная трава для газона", 500.0, 20, "Россия", "7 дней", "Зеленый")
-

@@ -1,7 +1,7 @@
 from typing import Any, Iterator, List, Optional
 
-from src.product import Product
 from src.base_order import BaseOrder
+from src.product import Product
 
 
 class CategoryIterator:

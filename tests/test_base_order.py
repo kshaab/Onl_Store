@@ -1,5 +1,7 @@
-from src.base_order import BaseOrder
 import unittest
+
+from src.base_order import BaseOrder
+
 
 class TempOrder(BaseOrder):
     def __init__(self, name: str):
@@ -8,8 +10,9 @@ class TempOrder(BaseOrder):
     def __str__(self) -> str:
         return f"Заказ: {self.name}"
 
+
 class TestBaseOrder(unittest.TestCase):
-    def test_init_and_str(self):
+    def test_init_and_str(self) -> None:
         order = TempOrder("Тест")
         self.assertEqual(order.name, "Тест")
         self.assertEqual(str(order), "Заказ: Тест")
