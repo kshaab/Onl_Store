@@ -16,7 +16,7 @@ class Product(PrintMixin, BaseProduct):
         self.description = description
         self.__price = price
         self.quantity = quantity
-        super().__init__()
+        super().__init__(name, description, price, quantity)
 
     def __str__(self) -> str:
         return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
@@ -56,11 +56,11 @@ class Product(PrintMixin, BaseProduct):
 
 if __name__ == "__main__":
     product = Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14)
-    print(f"{product.name}: {product.description}, {product.price} руб., {product.quantity} шт.")
+    # print(f"{product.name}: {product.description}, {product.price} руб., {product.quantity} шт.")
     another_product = Product("iPhone 14", "256GB, Gray space", 211000.0, 12)
-    print(
-        f"{another_product.name}: {another_product.description}, {another_product.price}, {another_product.quantity}."
-    )
+    # print(
+    #     f"{another_product.name}: {another_product.description}, {another_product.price}, {another_product.quantity}."
+    # )
     all_products = []
     Product.new_product(
         {
