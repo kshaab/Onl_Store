@@ -4,7 +4,7 @@ from typing import Any
 class BaseProduct(ABC):
 
     @abstractmethod
-    def __init__(self) -> None:
+    def __init__(self, name: str, description: str, price: float, quantity: int) -> None:
         pass
 
     @property
