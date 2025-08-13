@@ -1,4 +1,4 @@
-from src.base_order import BaseOrder
+
 from src.product import Product
 from src.base_order import BaseOrder
 
@@ -18,7 +18,7 @@ class Order(BaseOrder):
         return f"Заказ: {self.product.name}, {self.quantity} шт., стоимость заказа: {self.total_price} руб."
 
 if __name__ == "__main__":
-    p = product_2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
+    p = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
     order = Order(p, 2)
     print(order)
 
