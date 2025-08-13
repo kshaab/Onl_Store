@@ -1,10 +1,11 @@
 from typing import Any, List
 from src.base_product import BaseProduct
+from src.print_mixin import PrintMixin
 
 all_products: List["Product"] = []
 
 
-class Product(BaseProduct):
+class Product(PrintMixin, BaseProduct):
     name: str
     description: str
     __price: float
@@ -15,6 +16,7 @@ class Product(BaseProduct):
         self.description = description
         self.__price = price
         self.quantity = quantity
+        super().__init__()
 
     def __str__(self) -> str:
         return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
