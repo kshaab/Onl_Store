@@ -67,3 +67,13 @@ def test_product_add(product: Product, other_product: Product) -> None:
 def test_product_add_fail(product: Product) -> None:
     with pytest.raises(TypeError):
         product + 1
+
+
+def test_error_message() -> None:
+    with pytest.raises(ValueError, match="Товар с нулевым количеством не может быть добавлен"):
+        Product("iPhone 15", "512GB, Gray", 210000.0, 0)
+
+
+def test_creation_product_fail() -> None:
+    with pytest.raises(ValueError):
+        Product("iPhone 15", "512GB, Gray", 210000.0, 0)

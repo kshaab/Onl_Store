@@ -1,6 +1,6 @@
 from src.base_order import BaseOrder
+from src.exception_class import ZeroException
 from src.product import Product
-from exception_class import ZeroException
 
 
 class Order(BaseOrder):
@@ -16,7 +16,6 @@ class Order(BaseOrder):
             print(e)
         finally:
             print("Добавление товара завершено")
-
 
     @property
     def product(self) -> Product:

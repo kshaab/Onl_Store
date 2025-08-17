@@ -13,14 +13,13 @@ class Product(PrintMixin, BaseProduct):
     quantity: int
 
     def __init__(self, name: str, description: str, price: float, quantity: int) -> None:
-
+        if quantity <= 0:
+            raise ValueError("Товар с нулевым количеством не может быть добавлен")
         self.name = name
         self.description = description
         self.__price = price
         self.quantity = quantity
         super().__init__(name, description, price, quantity)
-        if quantity <= 0:
-            raise ValueError("Товар с нулевым количеством не может быть добавлен")
 
     def __str__(self) -> str:
         return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."

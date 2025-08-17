@@ -93,3 +93,11 @@ def smartphone() -> Smartphone:
 @pytest.fixture
 def grass() -> LawnGrass:
     return LawnGrass("Газонная трава", "Элитная трава для газона", 500.0, 20, "Россия", "7 дней", "Зеленый")
+
+
+@pytest.fixture
+def empty_category() -> Category:
+    return Category(
+        "Смартфоны",
+        "Смартфоны, как средство не только коммуникации, но и получение дополнительных функций для удобства жизни.",
+    )

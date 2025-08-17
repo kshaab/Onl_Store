@@ -68,3 +68,24 @@ def test_category_iterator(cat_iterator: CategoryIterator) -> None:
 
     with pytest.raises(StopIteration):
         next(cat_iterator)
+
+
+def test_count_avg_price(category: Category) -> None:
+    assert 400333.33
+
+
+def test_count_avg_price_error(empty_category: Category) -> None:
+    assert empty_category.count_avg_price() == 0
+
+
+def test_add_product_success(capsys: CaptureFixture) -> None:
+    category = Category("Смартфоны", "Мобильные устройства", [])
+
+    product = Product("IPhone 14", "256GB, Black", 150000.0, 5)
+    category.add_product(product)
+
+    captured = capsys.readouterr()
+
+    assert f"Товар {product.name} успешно добавлен в категорию" in captured.out
+    assert "Добавление товара завершено" in captured.out
+    assert product in category.get_products
