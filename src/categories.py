@@ -60,6 +60,15 @@ class Category(BaseOrder):
             products_str += str(item)
         return products_str
 
+    def count_avg_price(self) -> float:
+        try:
+            total_price = sum(product.price for product in self.__products_list)
+            return round(total_price / len(self.__products_list), 2)
+        except ZeroDivisionError:
+            return 0
+
+
+
 
 if __name__ == "__main__":
     product_1 = Product("Samsung Galaxy C23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
@@ -80,3 +89,4 @@ if __name__ == "__main__":
     print(category)
     for product in category:
         print(product)
+    print(category.count_avg_price())
