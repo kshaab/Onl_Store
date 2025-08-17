@@ -1,5 +1,6 @@
 from typing import Any, Iterator, List, Optional
 
+from src.base_order import BaseOrder
 from src.product import Product
 
 
@@ -20,7 +21,7 @@ class CategoryIterator:
             raise StopIteration
 
 
-class Category:
+class Category(BaseOrder):
     name: str
     description: str
     __products: list
