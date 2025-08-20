@@ -1,6 +1,7 @@
 from typing import Any, Iterator, List, Optional
 
 from src.base_order import BaseOrder
+from src.exception_class import ZeroException
 from src.product import Product
 
 
@@ -43,11 +44,22 @@ class Category(BaseOrder):
         return CategoryIterator(self)
 
     def add_product(self, product_name: Any) -> None:
-        if not isinstance(product_name, Product):
-            print("Объект не принадлежит классу Product")
-            return
-        self.__products_list.append(product_name)
-        Category.product_count += 1
+        try:
+            if not isinstance(product_name, Product):
+                raise TypeError("Объект не принадлежит классу Product")
+            if product_name.quantity <= 0:
+                raise ZeroException(product_name.name)
+
+            self.__products_list.append(product_name)
+            Category.product_count += 1
+            print(f"Товар {product_name.name} успешно добавлен в категорию")
+
+        except ZeroException as e:
+            print(e)
+        except TypeError as e:
+            print(e)
+        finally:
+            print("Добавление товара завершено")
 
     @property
     def get_products(self) -> List[Product]:
@@ -59,6 +71,13 @@ class Category(BaseOrder):
         for item in self.__products_list:
             products_str += str(item)
         return products_str
+
+    def count_avg_price(self) -> float:
+        try:
+            total_price = sum(product.price for product in self.__products_list)
+            return round(total_price / len(self.__products_list), 2)
+        except ZeroDivisionError:
+            return 0
 
 
 if __name__ == "__main__":
@@ -80,3 +99,5 @@ if __name__ == "__main__":
     print(category)
     for product in category:
         print(product)
+    print(category.count_avg_price())
+    category.add_product(product_1)
