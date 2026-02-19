@@ -32,6 +32,7 @@
 - Python 3.10+
 - Poetry
 - Pytest
+- PostgreSQL
 - JSON
 
 ## Структура проекта
