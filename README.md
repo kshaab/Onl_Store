@@ -55,7 +55,7 @@ main.py
 
 1. Клонирование репозитория: 
 ```bash
-git clone https://github.com/kshaab/Online-Store
+git clone https://github.com/kshaab/Online-Store-SPA
 cd crswrk_1
 ```
 2. Установка зависимостей и активация виртуальное окружения:
